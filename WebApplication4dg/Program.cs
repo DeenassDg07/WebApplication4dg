@@ -15,14 +15,19 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<MagazinEptContext>();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMediatorHandlers(Assembly.GetExecutingAssembly());
 builder.Services.AddSingleton<IMediator, Mediator>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
-//builder.Services.AddScoped<Mediator>();
-//builder.Services.AddMediatorHandlers(Assembly.GetExecutingAssembly());
+
+builder.Services.AddScoped<Mediator>();
+builder.Services.AddMediatorHandlers(Assembly.GetExecutingAssembly());
 
 // Сами валидаторы
+builder.Services.AddScoped<MyMediator.Types.Mediator>();
+builder.Services.AddMediatorHandlers(Assembly.GetExecutingAssembly());
 builder.Services.AddTransient<IValidator<Register>, RegisterValidators>();
 
 var app = builder.Build();
@@ -31,6 +36,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

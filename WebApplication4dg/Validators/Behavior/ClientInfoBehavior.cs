@@ -14,7 +14,7 @@ namespace WebApplication4dg.Validators.Behavior
             string userAgent = httpContextAccessor.HttpContext?.Request.Headers.UserAgent.ToString() ?? "";
             UserAdditionalInfo info = new(ipAddress, userAgent);
 
-            var prop = typeof(TRequest).GetProperty("UserAdditionalInfo");
+            var prop = typeof(TRequest).GetProperty("UserAdditionalInfo"); //TRequest параметр
             if (prop != null)
             {
                 prop.SetValue(request, info);

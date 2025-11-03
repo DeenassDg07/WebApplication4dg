@@ -5,18 +5,18 @@ using WebApplication4dg.DB;
 
 namespace WebApplication4dg.sqrs.Registration
 {
-    public class Register(RegisterDTO user) : AdditionInfoUser, IRequest
+    public class Register : AdditionInfoUser, IRequest<Unit>
     {
-        public readonly RegisterDTO user = user;
+        public RegisterDTO User { get; set; }
 
         public class RegisterHandler(MagazinEptContext db) : IRequestHandler<Register, Unit>
         {
             public async Task<Unit> HandleAsync(Register request, CancellationToken ct = default)
             {
-                if (await db.Users.AnyAsync(u => u.Id == request.user.Id))
+                if (await db.Users.AnyAsync(u => u.Id == request.User.Id))
                     throw new Exception();
 
-                db.Users.Add((User)request.user);
+                db.Users.Add((User)request.User);
                 await db.SaveChangesAsync();
                 return Unit.Value;
             }

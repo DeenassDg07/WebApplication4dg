@@ -8,14 +8,14 @@ namespace WebApplication4dg.Controllers
 {
         [Route("api/[controller]")]
         [ApiController]
-        public class UsersController(IMediator mediator) : Controller
+        public class RegisterController(IMediator mediator) : Controller
         {
             private readonly IMediator mediator = mediator;
 
             [HttpPost("/register")]
             public async Task<ActionResult> RegisterUser(RegisterDTO user)
             {
-                var command = new Register(user);
+                var command = new Register() { User = user }; ;
                 await mediator.SendAsync(command);
                 return Ok();
             }

@@ -12,19 +12,19 @@ namespace WebApplication4dg.Validators
         public async Task<IEnumerable<string>> ValidateAsync(Register request, CancellationToken ct)
         {
             List<string> errors = [];
-            if (string.IsNullOrEmpty(request.user.Password?.Trim()))
+            if (string.IsNullOrEmpty(request.User.Password?.Trim()))
                 errors.Add("Некорректный пароль");
 
             var now = DateTime.UtcNow;
-            var date = request.user.DateOfBithDay;
+            var date = request.User.DateOfBithDay;
 
 
-            if (string.IsNullOrEmpty(request.user.Email?.Trim()) || !Regex.Match(request.user.Email ?? "", emailPattern, RegexOptions.IgnoreCase).Success)
-                if (string.IsNullOrEmpty(request.user.Phone.Trim()) || !Regex.Match(request.user.Phone, phonePattern, RegexOptions.IgnoreCase).Success)
+            if (string.IsNullOrEmpty(request.User.Email?.Trim()) || !Regex.Match(request.User.Email ?? "", emailPattern, RegexOptions.IgnoreCase).Success)
+                if (string.IsNullOrEmpty(request.User.Phone.Trim()) || !Regex.Match(request.User.Phone, phonePattern, RegexOptions.IgnoreCase).Success)
                     errors.Add("Телефон неправильно указан");
-            if (string.IsNullOrEmpty(request.user.FirstName.Trim()) || string.IsNullOrEmpty(request.user.LastName.Trim()))
+            if (string.IsNullOrEmpty(request.User.FirstName.Trim()) || string.IsNullOrEmpty(request.User.LastName.Trim()))
                 errors.Add("Неправильно указано имя");
-            if (string.IsNullOrEmpty(request.user.Info?.Trim()))
+            if (string.IsNullOrEmpty(request.User.Info?.Trim()))
                 errors.Add("Не указана информация о себе");
 
             return errors;
