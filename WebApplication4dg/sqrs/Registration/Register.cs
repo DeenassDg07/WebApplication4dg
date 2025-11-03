@@ -9,9 +9,9 @@ namespace WebApplication4dg.sqrs.Registration
     {
         public readonly RegisterDTO user = user;
 
-        public class RegisterUserCommandHandler(MagazinEptContext db) : IRequestHandler<RegisterUserCommand, Unit>
+        public class RegisterHandler(MagazinEptContext db) : IRequestHandler<Register, Unit>
         {
-            public async Task<Unit> HandleAsync(MagazinEptContext request, CancellationToken ct = default)
+            public async Task<Unit> HandleAsync(Register request, CancellationToken ct = default)
             {
                 if (await db.Users.AnyAsync(u => u.Id == request.user.Id))
                     throw new Exception();

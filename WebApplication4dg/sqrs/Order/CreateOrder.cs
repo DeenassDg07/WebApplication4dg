@@ -1,4 +1,6 @@
-﻿using MyMediator.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyMediator.Interfaces;
+using WebApplication4dg.DB;
 
 namespace WebApplication4dg.sqrs.Order
 {

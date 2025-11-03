@@ -18,6 +18,7 @@ namespace WebApplication4dg.Validators
             var now = DateTime.UtcNow;
             var date = request.user.DateOfBithDay;
 
+
             if (string.IsNullOrEmpty(request.user.Email?.Trim()) || !Regex.Match(request.user.Email ?? "", emailPattern, RegexOptions.IgnoreCase).Success)
                 if (string.IsNullOrEmpty(request.user.Phone.Trim()) || !Regex.Match(request.user.Phone, phonePattern, RegexOptions.IgnoreCase).Success)
                     errors.Add("Телефон неправильно указан");

@@ -1,4 +1,5 @@
-﻿using MyMediator.Interfaces;
+﻿
+using MyMediator.Interfaces;
 using MyMediator.Types;
 using WebApplication4dg.DB;
 

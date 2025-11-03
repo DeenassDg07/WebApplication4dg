@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyMediator.Interfaces;
 using MyMediator.Types;
 using WebApplication4dg.sqrs.Order;
 
 namespace WebApplication4dg.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CreateOrderController : Controller
     {
 
-        private readonly Mediator mediator;
-        public CreateOrderController(Mediator mediator)
+        private readonly IMediator mediator;
+        public CreateOrderController(IMediator mediator)
         {
             this.mediator = mediator;
         }
